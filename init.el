@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     html
      csv
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -53,6 +54,7 @@ values."
      spell-checking
      syntax-checking
      ;; version-control
+     ess
      python
      latex
      sql
