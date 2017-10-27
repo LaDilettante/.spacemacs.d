@@ -350,6 +350,7 @@ you should place your code here."
   (setq TeX-auto-save t) ; Enable parse on save.
   ;; Use Skim on macOS to utilize synctex.
   ;; Confer https://mssun.me/blog/spacemacs-and-latex.html
+  ;; Shift+Cmd+Left click to inverse search from Skim -> Emacs
   (setq TeX-source-correlate-mode t)
   (setq TeX-source-correlate-start-server t)
   (setq TeX-source-correlate-method 'synctex)
