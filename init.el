@@ -323,24 +323,28 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;;; ESS config
+  ;;; ESS
   (add-hook 'ess-mode-hook (lambda () (ess-toggle-underscore nil)))
-  ;;; Stan mode config
+  ;;; Stan
   (require 'stan-mode)
   (require 'stan-snippets)
   (add-hook 'stan-mode-hook '(lambda () (yas-minor-mode)))
   (add-to-list 'auto-mode-alist '("\\.stan\\'" . stan-mode))
-  ;;; org-wiki config
+  ;;; org-wiki
   ;; point org-wiki to the wiki location
   (require 'org-wiki)
   (setq org-wiki-location "~/org/wiki")
-  ;;; magit config
+  ;;; magit
   ;; magit to all git repo, for auto-completion
   (setq magit-repository-directories '("~/projects/"))
-  ;;; Python config
+  ;;; Python
   ;; Include underscores in word motion
   (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-  ;;; Latex config
+  ;;; org
+  (spacemacs/toggle-truncate-lines-on)
+  ;; Visual line navigation for textual modes
+  (add-hook 'text-mode-hook 'spacemacs/toggle-visual-line-navigation-on)
+  ;;; Latex
   (setq TeX-save-query nil)
   (setq TeX-parse-self t) ; Enable parse on load.
   (setq TeX-auto-save t) ; Enable parse on save.
