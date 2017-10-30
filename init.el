@@ -323,6 +323,9 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;;; hotfix
+  ;; https://github.com/syl20bnr/spacemacs/issues/9608
+  (require 'helm-bookmark)
   ;;; ESS
   (add-hook 'ess-mode-hook (lambda () (ess-toggle-underscore nil)))
   ;;; Stan
@@ -348,6 +351,8 @@ you should place your code here."
   (setq TeX-save-query nil)
   (setq TeX-parse-self t) ; Enable parse on load.
   (setq TeX-auto-save t) ; Enable parse on save.
+  ;; So that RefTeX finds my bibliography
+  (setq reftex-default-bibliography '("~/Dropbox/texmf/bibtex/bib/library.bib"))
   ;; Use Skim on macOS to utilize synctex.
   ;; Confer https://mssun.me/blog/spacemacs-and-latex.html
   ;; Shift+Cmd+Left click to inverse search from Skim -> Emacs
