@@ -4,7 +4,7 @@
 # --
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.75\textwidth,keepaspectratio]{../figure/$0}
-\caption{My caption}
-\label{fig:fig_label}
+\includegraphics[width=\textwidth,keepaspectratio]{../figure/$1}
+\caption{$2}
+\label{fig:$0}
 \end{figure}
