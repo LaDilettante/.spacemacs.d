@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Latex include graphics
+# key: includegraph
+# --
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\textwidth,keepaspectratio]{../figure/$1}
+\caption{$2}
+\label{fig:$0}
+\end{figure}

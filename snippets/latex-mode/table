@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Latex table
+# key: table
+# --
+\begin{table}[!ht]
+\centering
+\input{../table/$1}
+\caption{$2}
+\label{fig:$0}
+\end{figure}

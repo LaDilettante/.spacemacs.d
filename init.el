@@ -31,7 +31,11 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     c-c++
+     sml
+     csv
+     typescript
+     javascript
+     html
      ruby
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -40,7 +44,8 @@ values."
      ;; ----------------------------------------------------------------
      helm
      (auto-completion :variables
-                      auto-completion-enable-help-tooltip t)
+                      auto-completion-enable-help-tooltip nil
+                      auto-completion-private-snippets-directory "~/.spacemacs.d/snippets")
      better-defaults
      ;; emacs-lisp
      git
@@ -59,7 +64,6 @@ values."
             latex-enable-folding t
             latex-build-command "LatexMk")
      sql
-     sml
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -329,8 +333,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;;; Activate column indicator in prog-mode and text-mode
-  (add-hook 'prog-mode-hook 'turn-on-fci-mode)
+  ;;; hotfix
   ;;; ESS
   (add-hook 'ess-mode-hook (lambda () (ess-toggle-underscore nil)))
   ;;; Stan
@@ -357,12 +360,10 @@ you should place your code here."
   (setq TeX-parse-self t) ; Enable parse on load.
   (setq TeX-auto-save t) ; Enable parse on save.
   ;; So that RefTeX finds my bibliography
-  (setq reftex-default-bibliography '("~/Dropbox/texmf/bibtex/bib/library.bib"
-                                      "~/texmf/bibtex/bib/local/library.bib"))
+  (setq reftex-default-bibliography '("~/Dropbox/texmf/bibtex/bib/library.bib"))
   ;; Use Skim on macOS to utilize synctex.
   ;; Confer https://mssun.me/blog/spacemacs-and-latex.html
   ;; Shift+Cmd+Left click to inverse search from Skim -> Emacs
-  ;; Shift+Left click to inverse search from Okular -> Emacs. Must edit Okular Settings > Configure Okular > Editor > Emacs client
   (setq TeX-source-correlate-mode t)
   (setq TeX-source-correlate-start-server t)
   (setq TeX-source-correlate-method 'synctex)
@@ -393,7 +394,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (disaster company-c-headers cmake-mode clang-format ob-sml sml-mode org-mime rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby ghub let-alist dash-functional org-category-capture yaml-mode pdf-tools tablist stan-snippets stan-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode ess-smart-equals ess-R-object-popup ess-R-data-view ctable ess julia-mode emmet-mode company-web web-completion-data org-wiki xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help csv-mode auctex-latexmk company-quickhelp sql-indent company-auctex auctex yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic unfill smeargle orgit org-projectile org-present org-pomodoro alert log4e gntp org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby ghub let-alist dash-functional org-category-capture yaml-mode pdf-tools tablist stan-snippets stan-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode ess-smart-equals ess-R-object-popup ess-R-data-view ctable ess julia-mode emmet-mode company-web web-completion-data org-wiki xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help csv-mode auctex-latexmk company-quickhelp sql-indent company-auctex auctex yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic unfill smeargle orgit org-projectile org-present org-pomodoro alert log4e gntp org-download mwim mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
