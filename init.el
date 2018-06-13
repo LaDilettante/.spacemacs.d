@@ -55,7 +55,7 @@ values."
      spell-checking
      syntax-checking
      ;; version-control
-     ess
+     ;; ess
      (python :variables
              python-sort-imports-on-save t
              python-test-runner 'pytest)
@@ -334,16 +334,16 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;;; hotfix
   ;;; ESS
-  (add-hook 'ess-mode-hook (lambda () (ess-toggle-underscore nil)))
+  ;; (add-hook 'ess-mode-hook (lambda () (ess-toggle-underscore nil)))
   ;;; Stan
-  (require 'stan-mode)
-  (require 'stan-snippets)
-  (add-hook 'stan-mode-hook '(lambda () (yas-minor-mode)))
-  (add-to-list 'auto-mode-alist '("\\.stan\\'" . stan-mode))
+  ;; (require 'stan-mode)
+  ;; (require 'stan-snippets)
+  ;; (add-hook 'stan-mode-hook '(lambda () (yas-minor-mode)))
+  ;; (add-to-list 'auto-mode-alist '("\\.stan\\'" . stan-mode))
   ;;; org-wiki
   ;; point org-wiki to the wiki location
-  (require 'org-wiki)
-  (setq org-wiki-location "~/org/wiki")
+  ;; (require 'org-wiki)
+  ;; (setq org-wiki-location "~/org/wiki")
   ;;; magit
   ;; magit to all git repo, for auto-completion
   (setq magit-repository-directories '("~/projects/"))
